@@ -1,22 +1,21 @@
 class Deck
-	def __init__(self, cards)
 
+    def __init__(self, cards):
 
-	def Shuffling(self, cards, amountOfCards)
+    def Dealing(self):
 
-	
-	def Dealing(self, 
-
-
+    def numCardsLeft(self):
 
 class Card
 
+    def suit(self):
 
+    def value(self):
 
-class Hands
+class Hand
 
+    def numberOfCards(self):
 
+class Player1
 
-class player1
-
-class player2
+class Player2
