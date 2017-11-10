@@ -1,6 +1,20 @@
-import deuces
+
+
 
 def main():
+	print("Testing the deck model")
+	test_deck = deck.Deck
+	
+	print("...")
+	test_deck.Shuffle()
+	assert test_deck != olddeck
+
+	print("ok")
+	test_deck.Dealing(5)
+	if test_hand = 5:
+		assert true
+main()
+def cards():
 	print("### Testing card model ###")
 	test_Card = card.Card();
 	other_Card = other.Other();
@@ -13,4 +27,5 @@ def main():
 	print("=== Input Test ===")
 	assert deuces.get_suit_int(test_Card) > deuces.get_suit_int(other_Card):
 
+cards()
 	
