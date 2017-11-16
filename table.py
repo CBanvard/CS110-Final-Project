@@ -3,7 +3,8 @@ import evaluator
 class Table
 
     def __init__(self):
-        self.num_of_players = 2
+        self.P1 = Player()
+        self.P2 = Player()
         
     def whoWins(self):
         #evaluator logic
