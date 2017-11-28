@@ -1,4 +1,4 @@
-import card
+import random
 import deck
 class Hand
 
@@ -7,8 +7,6 @@ class Hand
         self.hand = []
 
     def deal(self):
-    #Have to figure out how to deal a random card, will examine deuces library more to figure it out
-        if len(hand) < numofcards:
-            hand = hand + card
-        else:
-            print("Hand is full.")
+        for i in range(numofcards):
+            newcard = random.choice(Deck)
+            hand += newcard
