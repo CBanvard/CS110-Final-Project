@@ -1,4 +1,8 @@
 import evaluator
+import hand
+import card
+import deck
+import collection
 
 class Table
 
@@ -6,11 +10,12 @@ class Table
         self.P1 = Player()
         self.P2 = Player()
 
-    def gameFlow(self):
-    #maybe this should be in the main function?
-        for i in range(5)
-            P1.selectcard()
-            P2.selectcard()
+    def gameFlow()
+        for i in range(5):
+            P1.selectCollection()
+            P1.selectCard()
+            P2.selectCollection()
+            P2.selectCard()
     
     def whoWins(self):
 #evaluator logic
