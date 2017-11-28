@@ -1,30 +1,23 @@
 import hand
+import card
 import collection
-
 class Player
 
     def __init__(self):
-        self.collection = Collection()
+        self.collection = []
+        for i in range(5):
+            self.collection.append(Collection())
         self.hand = Hand()
 
-    def player(self):
-    #Dealing a player a hand of cards using thd deal function from the Hand class
-        Player.deal.hand()
+    def playCard(self, card, collectionchoice):
+        self.collection[collectionchoice-1].addCard(card)
 
-    def playCard(self, card):
-        collection = collection + card
+    def selectCollection(self, collectionchoice):
+        return self.collection[collectionchoice - 1]
 
-    def selectCard(self, hand):
-        playerchoice = int(input("To choose card to play, please enter a number from 1-5 that corresponds to the card in your hand."))
-        if playerchoice == 1:
-            playCard(card1)
-        elif playerchoice == 2:
-            playCard(card2)
-        elif playerchoice == 3:
-            playCard(card3)
-        elif playerchoice == 4:
-            playCard(card4)
-        elif playerchoice == 5:
-            playCard(card5)
-        else:
-            print("Please select valid choice.")
+    def selectCard(self, hand, cardchoice)
+                  
+            if 1 <= charchoice <= 5:
+                  print("Please input a valid choice.")
+            else:
+                  playCard(hand[cardchoice-1], selectCollection())
