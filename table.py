@@ -32,10 +32,10 @@ class Table:
             else:
                 print("There was a tie.")
 
-        if P1_hands_won > P2_hands_won:
+        if P1_hands_won < P2_hands_won:
             print("Player One Triumphs!")
 
-        elif P1_hands_won < P2_hands_won:
+        elif P1_hands_won > P2_hands_won:
             print("Player Two Prevails!")
         
         else:
