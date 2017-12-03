@@ -40,15 +40,13 @@ class Screen:
         self.buttonRectOutline = pygame.Rect(self.buttonLoc, self.buttonSize)
         self.state = 0
 
-    def main(self):
-        # options menu (1,2,3,4 for the different keys)
+       def main(self):
+        # options menu (1,2,3 for the different keys)
         if self.state == 0:
             self.start_up()
         elif self.state == 1:
             self.play()
         elif self.state == 2:
-            self.results()
-        elif self.state == 3:
             self.new_game()
 
     def start_up(self):
