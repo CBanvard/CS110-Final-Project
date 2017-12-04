@@ -1,15 +1,14 @@
 import pygame
 
-class Screen(pygame.sprite.Sprite):
+class Screen:
     def __init__(self, location):
-
         # these are the rgb values
         black = (0, 0, 0)
         white = (255, 255, 255)
 
         #i reference these multiple times throughout for buttons/images/other things
-        display_width = 1440
-        display_height = 900
+        display_width = 1200
+        display_height = 700
 
         #initialize screen
         pygame.init()
@@ -17,30 +16,28 @@ class Screen(pygame.sprite.Sprite):
         pygame.display.set_caption('Israeli Poker!')
 
         #initialize background
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('pokerBackground.jpg')
+        self.image = pygame.image.load('pokerBackground.xcf')
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
 
         #Displays the welcome text
-        self.font = pygame.font.Font(Arial, 36)
-        self.font.bold()
+        self.font = pygame.font.Font("C:\Windows\Fonts\Arial.ttf", 50)
+        self.font.set_bold(True)
         self.text = self.font.render("Welcome to Israeli Poker!", 1, white)
-        self.textpos = text.get_rect()
-        self.textpos.centerx = self.background.get_rect().centerx
-        self.background.blit(text, textpos)
+        self.textpos = self.text.get_rect()
+        self.textpos.centerx = self.screen.get_rect().centerx
+        self.screen.blit(self.text, self.textpos)
 
         #Blit everything to the screen
-        screen.blit(background, (0, 0))
-        pygame.display.update()
+        pygame.display.flip()
 
-    def screenImages(self,x,y):
+    def screenImages(self, x, y):
         #loads all the images
         gameDisplay.blit(self.image, (x, y))
         self.x = display_width * 1
         self.y = display_height * 1
 
-    def button(msg, x, y, w, h, ic, ac, action=None):
+    def button(self, msg, x, y, w, h, ic, ac, action= None):
         # more rgb values
         red = (200, 0, 0)
         bright_red = (255, 0, 0)
@@ -56,36 +53,31 @@ class Screen(pygame.sprite.Sprite):
         else:
             pygame.draw.rect(gameDisplay, ic, (x, y, w, h))
 
-        smallText = pygame.font.SysFont("Arial", 40)
+        smallText = pygame.font.SysFont("C:\Windows\Fonts\Arial.ttf", 40)
         textSurf, textRect = text_objects(msg, smallText)
         textRect.center = ((x + (w / 2)), (y + (h / 2)))
         gameDisplay.blit(textSurf, textRect)
 
-        button("Play Game!", 300, 450, 100, 50, red, bright_red, game_loop)
-        button("Instructions", 300, 650, 100, 50, red, bright_red, instructions)
-        button("QuitGame", 300, 850, 100, 50, red, bright_red, quitgame)
+        button("Play Game!", 300, 250, 100, 50, red, bright_red, game_loop)
+        button("Instructions", 300, 450, 100, 50, red, bright_red, instructions)
+        button("QuitGame", 300, 650, 100, 50, red, bright_red, quitgame)
 
-    def game_loop(self):
+    #def game_loop(self):
+    #def instructions(self):
 
-
-
-
-
-
-
-    def instructions(self):
-
-
-
-
-
-    def quitgame(self):
-        while 1:
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    return
-
+        running = True
+        try:
+            while running:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
+            pygame.quit()
+        except SystemExit:
+            pygame.quit()
 
 def main():
-    self.image(x,y)
+    c = Screen((300,300))
+    #button("Play Game!", 300, 450, 100, 50, red, bright_red, game_loop)
+    #button("Instructions", 300, 650, 100, 50, red, bright_red, instructions)
+    #button("QuitGame", 300, 850, 100, 50, red, bright_red, quitgame)
 main()
