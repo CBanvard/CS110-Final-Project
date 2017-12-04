@@ -1,97 +1,70 @@
 import pygame
-import main
-
-height = 1000
-width = 1000
-
-class Screen:
-    def __init__(self):
-        deck = collection.Deck()
-        self.images = {}
-        self.scale = .5
-        self.cardSize = (width / 5, width / 5)
-        self.Lctn = pygame.image.load('backGround') #stillneedtofind
-        self.cardBack = pygame.image.load('cardBack') #stillneedtofind
-
-        pygame.font.init()
-        font = pygame.font.Font(Arial, 24)
-        loadText = font.render('Loading!', 1)
-        loadSize = font.size('Loading!')
-        loadBack = (width / 2 - loadSize[0] / 2, height / 2 - loadSize[0] / 2)
-
-        screen.blit(self.Lctn, (-300, 100))
-        screen.blit(loadText, loadBack)
 
 
-    def first_init(self):
-    # menu graphics
-        self.font2 = pygame.font.Font('font/Calibri, 100')
+class Screen(pygame.sprite.Sprite):
+    def __init__(self, location):
+
+        #i reference these multiple times throughout for buttons/images/other things
+        display_width = 1440
+        display_height = 900
+
+        #these are the rgb values
+        black = (0,0,0)
+        white = (255,255,255)
+        red = (255,0,0)
+
+        #initialize screen
+        pygame.init()
+        self.screen = pygame.display.set_mode((display_width, display_height))
+        pygame.display.set_caption('Israeli Poker!')
+
+        #initialize background
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('pokerBackground.jpg')
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
+
+        #Displays the welcome text
+        self.font = pygame.font.Font(Arial, 36)
         self.font.bold()
+        self.text = self.font.render("Welcome to Israeli Poker!", 1, white)
+        self.textpos = text.get_rect()
+        self.textpos.centerx = self.background.get_rect().centerx
+        self.background.blit(text, textpos)
 
-        self.startText = self.font2.render('Welcome to Israeli Poker!, 1')
-        self.startSize = self.font2.size('Welcome to Israeli Poker!')
-        self.startLoc = (width / 2 - self.startSize[0] / 2, self.buffer)
+        #Blit everything to the screen
+        screen.blit(background, (0, 0))
+        pygame.display.update()
 
-        self.startButton = self.font.render(" Start ", 1, BLACK)
-        self.buttonSize = self.font.size(" Start ")
-        self.buttonLctn = (width / 2 - self.buttonSize[0] / 2, HEIGHT / 2 - self.buttonSize[1] / 2)
+    def screenImages(self,x,y):
+        #loads all the images
+        newGame = pygame.image.load('button1.jpg').convert_alpha()
+        Instructions = pygame.image.load('button2.jpg').convert_alpha()
+        Quit = pygame.image.load('button3.jpg').convert_alpha()
+        gameDisplay.blit(self.image, (x, y))
+        self.x = display_width * 1
+        self.y = display_height * 1
 
-        self.buttonRect = pygame.Rect(self.buttonLoc, self.buttonSize)
-        self.buttonRectOutline = pygame.Rect(self.buttonLoc, self.buttonSize)
-        self.state = 0
+        gameDisplay.blit(newGame, (x, y))
+        self.x = display_width * .45
+        self.y = display_height * .4
 
-       def main(self):
-        # options menu (1,2,3 for the different keys)
-        if self.state == 0:
-            self.start_up()
-        elif self.state == 1:
-            self.play()
-        elif self.state == 2:
-            self.new_game()
+        gameDisplay.blit(Instructions, (x, y))
+        self.x = display_width * .45
+        self.y = display_height * .6
 
-    def start_up(self):
+        gameDisplay.blit(Quit, (x, y))
+        self.x = display_width * .45
+        self.y = display_height * .8
 
-        for userInput in pygame.event.get():
-            if userInput.input == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+        #Event loop
+        while 1:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    return
 
-            # when the user clicks the start button, change to the playing state
-            elif userInput.input == pygame.MOUSEBUTTONDOWN:
-                if userInput.input == 1:
-                    mouseRect = pygame.Rect(event.pos, (1, 1))
-                    if mouseRect.colliderect(self.buttonRect):
-                        self.state += 1
-                        self.play_init()
-                        return
-
-    def play(self):
-        for userInput in pygame.event.get():
-            if userInput.input == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-            # when the user clicks on a card, change its color to signify a selection has occurred
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1: #creates rectangle
-                    mouseRect = pygame.Rect(event.pos, (1, 1))
-                    for card in range(len(self.poker.playerHand)):
-                        cardRect = pygame.Rect(self.cardLoc[card],
-                                               (int(self.scale * self.cardSize[0]), int(self.scale * self.cardSize[1])))
-                        if cardRect.colliderect(mouseRect):
-                            self.poker.playerHand[card].selected = not self.poker.playerHand[card].selected
-                            break
-
-                    # check if we clicked the replaceButton
-                    if mouseRect.colliderect(self.buttonRect):
-                        self.poker.replace(self.poker.playerHand)
-                        self.poker.computerReplace()
-                        self.round += 1
-                        if self.round == 2:
-                            self.state += 1
-                            self.results_init()
-                            return
-
-
-
+            self.image(x,y)
+            newGame(x,y)
+            Instructions(x,y)
+            Quit(x,y)
 
