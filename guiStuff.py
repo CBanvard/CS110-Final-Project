@@ -1,17 +1,15 @@
 import pygame
 
-
 class Screen(pygame.sprite.Sprite):
     def __init__(self, location):
+
+        # these are the rgb values
+        black = (0, 0, 0)
+        white = (255, 255, 255)
 
         #i reference these multiple times throughout for buttons/images/other things
         display_width = 1440
         display_height = 900
-
-        #these are the rgb values
-        black = (0,0,0)
-        white = (255,255,255)
-        red = (255,0,0)
 
         #initialize screen
         pygame.init()
@@ -37,25 +35,48 @@ class Screen(pygame.sprite.Sprite):
         pygame.display.update()
 
     def screenImages(self,x,y):
+        #more rgb values
+        red = (200, 0, 0)
+        bright_red = (255, 0, 0)
+
         #loads all the images
-        newGame = pygame.image.load('button1.jpg').convert_alpha()
-        Instructions = pygame.image.load('button2.jpg').convert_alpha()
-        Quit = pygame.image.load('button3.jpg').convert_alpha()
         gameDisplay.blit(self.image, (x, y))
         self.x = display_width * 1
         self.y = display_height * 1
 
-        gameDisplay.blit(newGame, (x, y))
-        self.x = display_width * .45
-        self.y = display_height * .4
+        mouse = pygame.mouse.get_pos()
+        #draws button1
+        if 150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
+            pygame.draw.rect(gameDisplay, bright_red, (150, 450, 100, 50))
+        else:
+            pygame.draw.rect(gameDisplay, red, (150, 450, 100, 50))
 
-        gameDisplay.blit(Instructions, (x, y))
-        self.x = display_width * .45
-        self.y = display_height * .6
+        smallText = pygame.font.Font("Arial.ttf", 20)
+        textSurf, textRect = text_objects("Play Game!", smallText)
+        textRect.center = ((150 + (100 / 2)), (450 + (50 / 2)))
+        gameDisplay.blit(textSurf, textRect)
 
-        gameDisplay.blit(Quit, (x, y))
-        self.x = display_width * .45
-        self.y = display_height * .8
+        #draws button2
+        if 150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
+            pygame.draw.rect(gameDisplay, bright_red, (150, 750, 100, 50))
+        else:
+            pygame.draw.rect(gameDisplay, red, (150, 750, 100, 50))
+
+        textSurf, textRect = text_objects("Instructions", smallText)
+        textRect.center = ((150 + (100 / 2)), (750 + (50 / 2)))
+        gameDisplay.blit(textSurf, textRect)
+
+        # draws button3
+        if 150 + 100 > mouse[0] > 150 and 950 + 50 > mouse[1] > 450:
+            pygame.draw.rect(gameDisplay, bright_red, (150, 950, 100, 50))
+        else:
+            pygame.draw.rect(gameDisplay, red, (150, 950, 100, 50))
+
+        textSurf, textRect = text_objects("Quit Game", smallText)
+        textRect.center = ((150 + (100 / 2)), (750 + (50 / 2)))
+        gameDisplay.blit(textSurf, textRect)
+
+        pygame.display.update()
 
         #Event loop
         while 1:
@@ -63,8 +84,6 @@ class Screen(pygame.sprite.Sprite):
                 if event.type == QUIT:
                     return
 
-            self.image(x,y)
-            newGame(x,y)
-            Instructions(x,y)
-            Quit(x,y)
-
+def main():
+    self.image(x,y)
+main()
