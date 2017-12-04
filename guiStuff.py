@@ -35,54 +35,42 @@ class Screen(pygame.sprite.Sprite):
         pygame.display.update()
 
     def screenImages(self,x,y):
-        #more rgb values
-        red = (200, 0, 0)
-        bright_red = (255, 0, 0)
-
         #loads all the images
         gameDisplay.blit(self.image, (x, y))
         self.x = display_width * 1
         self.y = display_height * 1
 
+    def button(msg, x, y, w, h, ic, ac, action=None):
+        # more rgb values
+        red = (200, 0, 0)
+        bright_red = (255, 0, 0)
+
         mouse = pygame.mouse.get_pos()
-        #draws button1
-        if 150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
-            pygame.draw.rect(gameDisplay, bright_red, (150, 450, 100, 50))
-        else:
-            pygame.draw.rect(gameDisplay, red, (150, 450, 100, 50))
+        click = pygame.mouse.get_pressed()
+        print(click)
+        if x + w > mouse[0] > x and y + h > mouse[1] > y:
+            pygame.draw.rect(gameDisplay, ac, (x, y, w, h))
 
-        smallText = pygame.font.Font("Arial.ttf", 20)
-        textSurf, textRect = text_objects("Play Game!", smallText)
-        textRect.center = ((150 + (100 / 2)), (450 + (50 / 2)))
+        if click[0] == 1 and action != None:
+                action()
+        else:
+            pygame.draw.rect(gameDisplay, ic, (x, y, w, h))
+
+        smallText = pygame.font.SysFont("Arial", 40)
+        textSurf, textRect = text_objects(msg, smallText)
+        textRect.center = ((x + (w / 2)), (y + (h / 2)))
         gameDisplay.blit(textSurf, textRect)
 
-        #draws button2
-        if 150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
-            pygame.draw.rect(gameDisplay, bright_red, (150, 750, 100, 50))
-        else:
-            pygame.draw.rect(gameDisplay, red, (150, 750, 100, 50))
-
-        textSurf, textRect = text_objects("Instructions", smallText)
-        textRect.center = ((150 + (100 / 2)), (750 + (50 / 2)))
-        gameDisplay.blit(textSurf, textRect)
-
-        # draws button3
-        if 150 + 100 > mouse[0] > 150 and 950 + 50 > mouse[1] > 450:
-            pygame.draw.rect(gameDisplay, bright_red, (150, 950, 100, 50))
-        else:
-            pygame.draw.rect(gameDisplay, red, (150, 950, 100, 50))
-
-        textSurf, textRect = text_objects("Quit Game", smallText)
-        textRect.center = ((150 + (100 / 2)), (750 + (50 / 2)))
-        gameDisplay.blit(textSurf, textRect)
-
-        pygame.display.update()
+        button("Play Game!", 300, 450, 100, 50, red, bright_red, game_loop)
+        button("Instructions", 300, 650, 100, 50, red, bright_red, instructions)
+        button("QuitGame", 300, 850, 100, 50, red, bright_red, quitgame)
 
         #Event loop
         while 1:
             for event in pygame.event.get():
                 if event.type == QUIT:
                     return
+
 
 def main():
     self.image(x,y)
