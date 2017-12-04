@@ -65,7 +65,21 @@ class Screen(pygame.sprite.Sprite):
         button("Instructions", 300, 650, 100, 50, red, bright_red, instructions)
         button("QuitGame", 300, 850, 100, 50, red, bright_red, quitgame)
 
-        #Event loop
+    def game_loop(self):
+
+
+
+
+
+
+
+    def instructions(self):
+
+
+
+
+
+    def quitgame(self):
         while 1:
             for event in pygame.event.get():
                 if event.type == QUIT:
