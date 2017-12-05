@@ -19,7 +19,7 @@ class Screen:
         pygame.display.set_caption('Israeli Poker!')
 
         #initialize background
-        self.image = pygame.image.load('Assets/pokerBackground.png')
+        self.image = pygame.image.load('pokerBackground.png')
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
         self.screen.blit(self.image, (0, 0))
@@ -61,7 +61,7 @@ class Screen:
                     my_table.gameFlow()
                 if 450 > mouse[0] > 200 and 340 > mouse[1] > 300:
                     print("Instructions -", mouse)
-                    img = Image.open('Assets/instructions.png')
+                    img = Image.open('instructions.png')
                     img.show()
                 if 450 > mouse[0] > 200 and 440 > mouse[1] > 400:
                     print("Quit Game -", mouse)
