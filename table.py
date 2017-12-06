@@ -5,22 +5,24 @@ import collection
 import player
 
 class Table:
-
+    
     def __init__(self):
         self.P1 = player.Player()
         self.P2 = player.Player()
         self.round_num = 0
-
+    
     def gameFlow(self):
         for i in range(5):
             self.round_num += 1
+            self.P1.hand.deal()
+            self.P2.hand.deal()
             for i in range(5):
                 self.P1.selectCard()
                 self.P2.selectCard()
     
     def whoWins(self):
         evaluator = Evaluator()
-
+        
         P1_hands_won = 0
         P2_hands_won = 0
         
@@ -31,12 +33,13 @@ class Table:
                 P2_hands_won += 1
             else:
                 print("There was a tie.")
-
-        if P1_hands_won < P2_hands_won:
+    
+        if P1_hands_won > P2_hands_won:
             print("Player One Triumphs!")
 
-        elif P1_hands_won > P2_hands_won:
+        elif P1_hands_won < P2_hands_won:
             print("Player Two Prevails!")
         
         else:
             print("There was a tie...")
+
