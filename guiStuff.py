@@ -1,5 +1,6 @@
 import sys, pygame
-from PIL import Image
+import tkinter as tk
+#from pillow import Image
 
 class Screen:
     def __init__(self, location):
@@ -61,9 +62,17 @@ class Screen:
                     my_table.gameFlow()
                 if 450 > mouse[0] > 200 and 340 > mouse[1] > 300:
                     print("Instructions -", mouse)
-                    img = Image.open('instructions.png')
-                    img.show()
+                    #img = Image.open('instructions.png')
+                    #img.show()
+                    root = tk.Tk()
+                    photo = tk.PhotoImage(file= 'instructions.png')
+                    label = tk.Label(root, image = photo)
+                    label.pack()
+                    root.mainloop()
                 if 450 > mouse[0] > 200 and 440 > mouse[1] > 400:
                     print("Quit Game -", mouse)
                     sys.exit()
-
+def main():
+    while 1:
+        c = Screen((300,300))
+main()
