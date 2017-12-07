@@ -74,6 +74,8 @@ class GameScreen:
         returns: None
         '''
         while True:
+            pygame.mixer.music.load('FunnyMusic.mp3')
+            pygame.mixer.music.play(-1)
             white = (255, 255, 255)
             display_width = 1200
             display_height = 700
