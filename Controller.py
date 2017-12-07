@@ -6,7 +6,11 @@ import hand
 
 class Controller:
     def __init__(self, location):
-        '''these are the rgb values'''
+        '''
+        Intizilizes the controller class and creates the gui 
+        param: Self, and the location of the gui in a tuple
+        returns: None
+        '''
         white = (255, 255, 255)
         #i reference these multiple times throughout for buttons/images/other things
         display_width = 1200
@@ -64,6 +68,11 @@ class Controller:
 
 class GameScreen:
     def __init__(self, location):
+        '''
+        Intizilizes the screen for the game itself
+        param: Self, and the location of the gui in a tuple
+        returns: None
+        '''
         while True:
             white = (255, 255, 255)
             display_width = 1200
