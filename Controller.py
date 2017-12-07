@@ -6,7 +6,7 @@ import hand
 
 class Controller:
     def __init__(self, location):
-        #these are the rgb values
+        '''these are the rgb values'''
         white = (255, 255, 255)
         #i reference these multiple times throughout for buttons/images/other things
         display_width = 1200
@@ -17,7 +17,7 @@ class Controller:
         self.screen = pygame.display.set_mode((display_width, display_height))
         pygame.display.set_caption('Israeli Poker!')
 
-        #initialize background images
+        #initialize backgroundimages
         self.image = pygame.image.load('pokerBackground.png')
         self.image = pygame.transform.scale(self.image, (1400, 850))
         self.screen.blit(self.image, (0, 0))
@@ -25,7 +25,7 @@ class Controller:
         self.image3 = pygame.image.load('image3.png')
         self.screen.blit(self.image3, (625, 150))
 
-        #Displays the welcome text
+        # Displays the welcome text
         self.font = pygame.font.SysFont("Arial", 50)
         self.font.set_bold(True)
         self.text = self.font.render("Welcome to Israeli Poker!", 1, white)
@@ -33,24 +33,20 @@ class Controller:
         self.textpos.centerx = self.screen.get_rect().centerx
         self.screen.blit(self.text, self.textpos)
 
-        #Creates the Play Game button
         self.TextRect = self.font.render("Play Game!", True, white)
         self.screen.blit(self.TextRect, (200,200))
 
-        #Creates the Instructions button
         self.TextRect = self.font.render("Instructions", True, white)
         self.screen.blit(self.TextRect, (200,300))
 
-        #Creates the Quit Game button
         self.TextRect = self.font.render("Quit Game", True, white)
         self.screen.blit(self.TextRect, (200,400))
 
-        #Updates the screen
+        # Blit everything to the screen
         pygame.display.flip()
-
-
         for event in pygame.event.get():
             mouse = pygame.mouse.get_pos()
+
             #exits the game if user presses button to close window
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -113,14 +109,38 @@ class GameScreen:
                 self.screen.blit(self.image, (350 + (100 * i), 600))
                 self.cardRect2 = (350 + (100 * i), 600, 70, 100)
 
+
+
+            '''if event.button == 1:
+            # create a rectangle for the mouse click and for each card.  check for intersection
+                    mouseRect = pygame.Rect(event.pos, (1, 1))
+                    if cardRect.colliderect(mouseRect):
+                        
+
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit();
+                        sys.exit()
+
+'''
             while True:
                 for event in pygame.event.get():
                     # exits the game if user presses button to close window
                     mouse = pygame.mouse.get_pos()
                     if event.type == pygame.QUIT: sys.exit()
                     if event.type == pygame.MOUSEBUTTONDOWN:
+                        print("Quit Game -", mouse)
                         if 300 > mouse[0] > 10 and 30 > mouse[1] > 10:
                             while 1:
                                 Controller((300, 300))
 
                 pygame.display.flip()
+
+
+
+
+'''def main():
+    while 1:
+        Controller((300,300))
+main()'''
+
