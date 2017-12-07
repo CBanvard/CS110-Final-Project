@@ -136,11 +136,3 @@ class GameScreen:
 
                 pygame.display.flip()
 
-
-
-
-'''def main():
-    while 1:
-        Controller((300,300))
-main()'''
-
